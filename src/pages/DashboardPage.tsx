@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useApp } from '@/lib/AppContext';
+import styles from './DashboardPage.module.css';
+import Sidebar from '@/components/Sidebar';
+import ProjectCard from '@/components/ProjectCard';
+import ActivityFeed from '@/components/ActivityFeed';
+import SessionPanel from '@/components/SessionPanel';
+import RatingModal from '@/components/RatingModal';
+import MemberAvatars from '@/components/MemberAvatars';
 import { mockActivities } from '@/lib/mockData';
 import { NavItem } from '@/types';
-import Sidebar from '@/components/Sidebar';
-import MemberAvatars from '@/components/MemberAvatars';
-import ProjectCard from '@/components/ProjectCard';
-import SessionPanel from '@/components/SessionPanel';
-import ActivityFeed from '@/components/ActivityFeed';
-import RatingModal from '@/components/RatingModal';
-import styles from './DashboardPage.module.css';
-import { Star, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function DashboardPage() {
   const { state } = useApp();
@@ -18,27 +17,19 @@ export default function DashboardPage() {
   const [activeNav, setActiveNav] = useState<NavItem>('squad');
   const [showRating, setShowRating] = useState(false);
 
-  const squad = state.squad;
-  if (!squad) return null;
+  const { squad, tasks } = state;
 
   return (
     <div className={styles.layout}>
       <Sidebar activeNav={activeNav} onNav={setActiveNav} />
 
-      <div className={styles.content}>
-        {/* Top bar */}
+      <div className={styles.main}>
         <header className={styles.header}>
-          <div className={styles.squadInfo}>
-            <div className={styles.squadIconWrap}>
-              <Zap size={18} className={styles.squadIcon} />
-            </div>
-            <div>
-              <h1 className={styles.squadName}>{squad.name}</h1>
-              <div className={styles.squadMeta}>
-                <Star size={13} fill="var(--warning)" color="var(--warning)" />
-                <span className={styles.rating}>{squad.rating.toFixed(1)}</span>
-                <span className={styles.ratingLabel}}>· {squad.members.length} members</span>
-              </div>
+          <div className={styles.headerLeft}>
+            <h1 className={styles.squadName}>{squad.name}</h1>
+            <div className={styles.squadMeta}>
+              <span className={styles.ratingBadge}>★ {squad.rating}</span>
+              <span className={styles.ratingLabel}>· {squad.members.length} members</span>
             </div>
           </div>
           <MemberAvatars members={squad.members} />
@@ -46,16 +37,12 @@ export default function DashboardPage() {
 
         {/* Main + Right panel */}
         <div className={styles.body}>
-          <main className={styles.main}>
-            <ProjectCard
-              project={squad.project}
-              tasks={state.tasks}
-            />
-
+          <div className={styles.content}>
+            <ProjectCard project={squad.project} tasks={tasks} />
             <ActivityFeed activities={mockActivities} />
-          </main>
+          </div>
 
-          <aside className={styles.aside}>
+          <aside className={styles.rightPanel}>
             <SessionPanel
               nextSession={squad.nextSession}
               onJoin={() => navigate('/session')}
