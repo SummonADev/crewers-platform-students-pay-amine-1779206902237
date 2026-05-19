@@ -1,0 +1,137 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.closeBtn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.closeBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.stars {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition);
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
+.ratingLabel {
+  font-size: 0.875rem;
+  font-weight: var(--fw-semibold);
+  color: var(--warning);
+  text-align: center;
+}
+
+.submitBtn {
+  padding: var(--space-3) var(--space-8);
+  background: linear-gradient(135deg, var(--accent) 0%, #4f46e5 100%);
+  color: white;
+  font-weight: var(--fw-semibold);
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  border: none;
+  transition: opacity var(--transition), transform var(--transition);
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+  width: 100%;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+}
+
+.successIcon {
+  font-size: 2.5rem;
+}
+
+.successTitle {
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+
+.successSub {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+}

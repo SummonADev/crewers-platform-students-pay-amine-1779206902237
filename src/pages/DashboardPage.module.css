@@ -1,0 +1,90 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.squadInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.squadIconWrap {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: rgba(99,102,241,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squadIcon {
+  color: var(--accent-bright);
+}
+
+.squadName {
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+}
+
+.squadMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: 2px;
+}
+
+.rating {
+  font-size: 0.8rem;
+  font-weight: var(--fw-semibold);
+  color: var(--warning);
+}
+
+.ratingLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  overflow-y: auto;
+}
+
+.aside {
+  border-left: 1px solid var(--border-subtle);
+  overflow-y: auto;
+  background: var(--bg-surface);
+}
